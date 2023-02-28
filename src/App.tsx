@@ -60,6 +60,10 @@ function App() {
     height: "60px",
     borderRadius: "100%",
     marginBottom: 30,
+    position: "absolute",
+    top: 10,
+    left: 10,
+    zIndex: 100,
     [theme.breakpoints.down("sm")]: {
       display: "flex",
     },
@@ -86,7 +90,7 @@ function App() {
             isSidebar={isSidebar}
             toggleSidebar={toggleSideBar}
             mode={mode}
-            setMode={setMode}
+            colorMode={colorMode}
           />
 
           {/* Main Content */}

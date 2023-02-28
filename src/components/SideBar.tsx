@@ -24,8 +24,9 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 //Import React Router
 import { useLocation, Link as RouterLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
-const SideBar = ({ isSidebar, toggleSidebar, mode, setMode }: any) => {
+const SideBar = ({ isSidebar, toggleSidebar, mode, colorMode }: any) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -179,7 +180,7 @@ const SideBar = ({ isSidebar, toggleSidebar, mode, setMode }: any) => {
               <Switch
                 color="primary"
                 checked={mode === "dark" ? true : false}
-                onChange={() => setMode(mode === "light" ? "dark" : "light")}
+                onChange={colorMode.toggleColorMode}
               />
             </MyListItemButton>
           </ListItem>

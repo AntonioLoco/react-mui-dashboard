@@ -1,0 +1,13 @@
+.active-list-item{
+    background-color: #1a237e!important;
+    color: white!important
+}
+
+.active-icon{
+    color: white!important
+}
+
+canvas{
+    max-width: 450px!important;
+    max-height: 300px!important;
+}

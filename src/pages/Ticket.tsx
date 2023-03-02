@@ -72,8 +72,9 @@ const Ticket = () => {
                   in={true}
                   direction="right"
                   timeout={parseInt(`1${index}00`)}
+                  key={index}
                 >
-                  <TableRow key={index}>
+                  <TableRow>
                     <TableCell>
                       <Checkbox />
                     </TableCell>
@@ -129,8 +130,9 @@ const Ticket = () => {
                   in={true}
                   direction="right"
                   timeout={parseInt(`1${index}00`)}
+                  key={index}
                 >
-                  <TableRow key={index}>
+                  <TableRow>
                     <TableCell>{el.ticketID}</TableCell>
                     <TableCell>{el.issueType}</TableCell>
                     <TableCell align="center">

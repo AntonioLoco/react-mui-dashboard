@@ -9,7 +9,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { getDesignTokens } from "./theme";
 
-import { createContext, useState, useMemo, memo } from "react";
+import { createContext, useState, useMemo, memo, useRef } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // Import My Component
@@ -34,10 +34,10 @@ function App() {
     }),
     []
   );
-  const [isSidebar, setIsSidebar] = useState(false);
+  const isSidebar = useRef<HTMLAnchorElement>(null);
 
   const toggleSideBar = () => {
-    setIsSidebar(!isSidebar);
+    isSidebar.current!.classList.toggle("open");
   };
 
   // Update the theme only if the mode changes
@@ -86,12 +86,7 @@ function App() {
         {/* Wrapper App */}
         <AppBox>
           {/* SideBar */}
-          <SideBar
-            isSidebar={isSidebar}
-            toggleSidebar={toggleSideBar}
-            mode={mode}
-            colorMode={colorMode}
-          />
+          <SideBar isSidebar={isSidebar} mode={mode} colorMode={colorMode} />
 
           {/* Main Content */}
           <MainBox overflow="auto">

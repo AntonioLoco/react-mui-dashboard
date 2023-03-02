@@ -26,7 +26,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useLocation, Link as RouterLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 
-const SideBar = ({ isSidebar, toggleSidebar, mode, colorMode }: any) => {
+const SideBar = ({ isSidebar, mode, colorMode }: any) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -72,19 +72,121 @@ const SideBar = ({ isSidebar, toggleSidebar, mode, colorMode }: any) => {
   }));
 
   return (
-    <Slide direction="right" in={true}>
+    <>
+      {/* Sidebar Large */}
       <MyBox
         sx={{
-          width: { xs: "80%", sm: "20%" },
+          width: "20%",
           height: "100%",
-          display: { xs: "fixed", sm: "flex" },
-          position: { xs: "absolute", sm: "relative" },
+          display: { xs: "none", sm: "flex" },
+          justifyContent: "center",
+          zIndex: 10,
+        }}
+        className="sidebar"
+      >
+        <List sx={{ paddingTop: 5, maxWidth: "100%" }}>
+          {/* Avatar */}
+          <ListItem sx={{ marginBottom: 5, justifyContent: "center" }}>
+            <MyListItemIcon sx={{ justifyContent: "center" }}>
+              <Avatar>A</Avatar>
+            </MyListItemIcon>
+          </ListItem>
+
+          {/* DashboardLink */}
+          <ListItem>
+            <MyListItemButton
+              className={location.pathname === "/" ? "active-list-item" : ""}
+              onClick={() => navigate("/")}
+            >
+              <MyListItemIcon>
+                <HomeIcon
+                  className={location.pathname === "/" ? "active-icon" : ""}
+                />
+              </MyListItemIcon>
+              <MyListItemText primary="Dashboard" />
+            </MyListItemButton>
+          </ListItem>
+
+          {/* MailLink */}
+          <ListItem>
+            <MyListItemButton
+              onClick={() => navigate("/ticket-box")}
+              className={
+                location.pathname === "/ticket-box" ? "active-list-item" : ""
+              }
+            >
+              <MyListItemIcon>
+                <DraftsIcon
+                  className={
+                    location.pathname === "/ticket-box" ? "active-icon" : ""
+                  }
+                />
+              </MyListItemIcon>
+              <MyListItemText primary="Ticket" />
+            </MyListItemButton>
+          </ListItem>
+
+          {/* Analitics Link */}
+          <ListItem>
+            <MyListItemButton>
+              <MyListItemIcon>
+                <AnalyticsIcon />
+              </MyListItemIcon>
+              <MyListItemText primary="Analitycs" />
+            </MyListItemButton>
+          </ListItem>
+
+          {/* Message Link */}
+          <ListItem>
+            <MyListItemButton>
+              <MyListItemIcon>
+                <MessageIcon />
+              </MyListItemIcon>
+              <MyListItemText primary="Message" />
+            </MyListItemButton>
+          </ListItem>
+
+          {/* Settings Link */}
+          <ListItem>
+            <MyListItemButton>
+              <MyListItemIcon>
+                <SettingsIcon />
+              </MyListItemIcon>
+              <MyListItemText primary="Settings" />
+            </MyListItemButton>
+          </ListItem>
+
+          {/* Toggle Dark Mode */}
+          <ListItem>
+            <MyListItemButton>
+              <MyListItemIcon>
+                <DarkModeIcon />
+              </MyListItemIcon>
+              <Switch
+                color="primary"
+                checked={mode === "dark" ? true : false}
+                onChange={colorMode.toggleColorMode}
+              />
+            </MyListItemButton>
+          </ListItem>
+        </List>
+      </MyBox>
+
+      {/* Sidebar Mobile */}
+      <MyBox
+        ref={isSidebar}
+        sx={{
+          width: "80%",
+          height: "100%",
+          display: { xs: "flex", sm: "none" },
+          position: "absolute",
           top: 0,
-          left: { xs: isSidebar ? 0 : "-100%", sm: 0 },
+          left: "-100%",
           bottom: 0,
           justifyContent: "center",
           zIndex: 10,
         }}
+        className="sidebar"
       >
         {/* Btn Close Hamburger Menu */}
         <MyButtonClose
@@ -94,7 +196,7 @@ const SideBar = ({ isSidebar, toggleSidebar, mode, colorMode }: any) => {
             right: 5,
             display: { xs: "block", sm: "none" },
           }}
-          onClick={toggleSidebar}
+          onClick={() => isSidebar.current!.classList.toggle("open")}
         >
           <CloseIcon />
         </MyButtonClose>
@@ -186,7 +288,7 @@ const SideBar = ({ isSidebar, toggleSidebar, mode, colorMode }: any) => {
           </ListItem>
         </List>
       </MyBox>
-    </Slide>
+    </>
   );
 };
 

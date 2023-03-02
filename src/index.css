@@ -11,3 +11,16 @@ canvas{
     max-width: 450px!important;
     max-height: 300px!important;
 }
+
+@media screen and (min-width: 400px) and (max-width: 600px) {
+    .sidebar{
+        transition: left 0s;
+    }
+}
+.sidebar{
+    transition: left .3s linear;
+}
+
+.open{
+    left: 0!important;
+}

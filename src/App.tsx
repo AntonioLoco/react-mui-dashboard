@@ -17,10 +17,6 @@ import SideBar from "./components/SideBar";
 import Dashboard from "./pages/Dashboard";
 import Ticket from "./pages/Ticket";
 
-const ColorModeContext = createContext({
-  toggleColorMode: () => {},
-});
-
 function App() {
   const [mode, setMode] = useState<PaletteMode>("dark");
   const colorMode = useMemo(
@@ -81,26 +77,24 @@ function App() {
   });
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        {/* Wrapper App */}
-        <AppBox>
-          {/* SideBar */}
-          <SideBar isSidebar={isSidebar} mode={mode} colorMode={colorMode} />
+    <ThemeProvider theme={theme}>
+      {/* Wrapper App */}
+      <AppBox>
+        {/* SideBar */}
+        <SideBar isSidebar={isSidebar} mode={mode} colorMode={colorMode} />
 
-          {/* Main Content */}
-          <MainBox overflow="auto">
-            <MyOpenButton onClick={toggleSideBar}>
-              <MenuIcon />
-            </MyOpenButton>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/ticket-box" element={<Ticket />} />
-            </Routes>
-          </MainBox>
-        </AppBox>
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+        {/* Main Content */}
+        <MainBox overflow="auto">
+          <MyOpenButton onClick={toggleSideBar}>
+            <MenuIcon />
+          </MyOpenButton>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/ticket-box" element={<Ticket />} />
+          </Routes>
+        </MainBox>
+      </AppBox>
+    </ThemeProvider>
   );
 }
 
